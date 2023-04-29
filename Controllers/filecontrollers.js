@@ -6,6 +6,11 @@ async function getFile(req, res) {
   res.json(files);
 }
 
+async function deleteFile(req, res) {
+  const deletedFile = await FileModel.findByIdAndDelete(req.params.id);
+  res.json(deletedFile);
+}
+
 function uploadFile(req, res) {
   const { name, fileType, isProtected, password, pic } = req.body;
 
@@ -49,4 +54,4 @@ function getSingleFile(req, res) {
   }
 }
 
-module.exports = { getFile, uploadFile, getSingleFile };
+module.exports = { getFile, uploadFile, getSingleFile, deleteFile };
